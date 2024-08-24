@@ -2,7 +2,7 @@
 
 import * as bootstrap from 'bootstrap';
 
-window.buscaAssuntos = function(assuntoId = null) {
+window.buscaAssuntos = function(assuntoId = '') {
     let options = {
         method : 'GET',
         headers: window.ajaxHeaders,

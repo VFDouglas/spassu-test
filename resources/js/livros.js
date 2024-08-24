@@ -2,7 +2,7 @@
 
 import * as bootstrap from 'bootstrap';
 
-window.buscaLivros = function(livroId = null) {
+window.buscaLivros = function(livroId = '') {
     let options = {
         method : 'GET',
         headers: window.ajaxHeaders,
