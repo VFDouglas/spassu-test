@@ -82,6 +82,7 @@
     </div>
 @endsection
 @section('page_content')
+    {{--@TODO: Implementar a busca das associações de asssuntos e autores--}}
     <div class="container mt-5">
         <div class="row justify-content-end">
             <div class="col-10 col-sm-5 text-end">

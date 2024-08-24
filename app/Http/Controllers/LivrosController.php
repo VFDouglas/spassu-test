@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assunto;
 use App\Models\Autor;
 use App\Models\Livro;
+use App\Models\LivroAssunto;
 use App\Models\LivroAutor;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -85,7 +86,7 @@ class LivrosController extends Controller
             $livro->save();
 
             if (request('autor_id')) {
-                $livroAutor = LivroAutor::query()
+                LivroAutor::query()
                     ->updateOrInsert([
                         'livro_id' => $livro->id,
                         'autor_id' => (int)request('autor_id'),
@@ -94,7 +95,7 @@ class LivrosController extends Controller
                     ]);
             }
             if (request('assunto_id')) {
-                $livroAutor = LivroAssunto::query()
+                LivroAssunto::query()
                     ->updateOrInsert([
                         'livro_id'   => $livro->id,
                         'assunto_id' => (int)request('assunto_id'),

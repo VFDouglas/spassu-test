@@ -31,3 +31,8 @@ document.addEventListener('click', function() {
         item.remove();
     }
 });
+
+window.exibeModal = function() {
+    document.getElementById('id_cadastro').value = '';
+    document.getElementById('form_cadastro').reset();
+};

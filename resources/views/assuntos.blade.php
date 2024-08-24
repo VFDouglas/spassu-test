@@ -38,7 +38,7 @@
         <div class="row justify-content-end">
             <div class="col-10 col-sm-5 text-end">
                 <button class="btn btn-primary px-4 mb-4" id="btn_add_user" data-bs-toggle="modal"
-                        data-bs-target="#modal_cadastro" onclick="document.getElementById('id_cadastro').value = ''">
+                        data-bs-target="#modal_cadastro" onclick="exibeModal()">
                     <i class="fa-solid fa-plus"></i>
                     Novo Assunto
                 </button>

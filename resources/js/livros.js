@@ -152,8 +152,3 @@ window.editaLivro = function(idLivro) {
 
     bootstrap.Modal.getOrCreateInstance('#modal_cadastro').show();
 };
-
-window.exibeModal = function(idLivro) {
-    document.getElementById('id_cadastro').value = '';
-    document.getElementById('form_cadastro').reset();
-};
