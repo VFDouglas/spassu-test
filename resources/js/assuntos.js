@@ -26,16 +26,10 @@ window.buscaAssuntos = function(assuntoId = null) {
                             html += `
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 my-2">
                                     <div class="card mb-1">
-                                        <div class="card-header fw-bold text-primary-emphasis text-truncate"
+                                        <div class="card-header fw-bold text-primary-emphasis text-truncate py-3"
                                              data-bs-toggle="tooltip" title="${item.descricao}" id="descricao_${item.id}">
+                                             <i class="fa-solid fa-inbox"></i>
                                             ${item.descricao}
-                                        </div>
-                                        <div class="card-body">
-                                            <div>
-                                                <i class="fa-regular fa-building" data-bs-toggle="tooltip"
-                                                   title="Descri&ccedil;&atilde;o"></i>
-                                                <span class="fw-medium" id="descricao_${item.id}">${item.descricao}</span>
-                                            </div>
                                         </div>
                                     </div>
                                     <button class="btn btn-sm btn-outline-danger remove_assunto text-decoration-none fw-medium"
@@ -121,14 +115,9 @@ document.getElementById('form_cadastro')?.addEventListener('submit', function(ev
 });
 
 window.editaAssunto = function(idAssunto) {
-    document.getElementById('titulo_cadastro').value  = document.getElementById(`titulo_${idAssunto}`).innerText.trim();
-    document.getElementById('editora_cadastro').value = document.getElementById(`editora_${idAssunto}`)
-        .innerText
-        .trim();
-    document.getElementById('edicao_cadastro').value  = document.getElementById(`edicao_${idAssunto}`).innerText.trim();
-    document.getElementById('ano_cadastro').value     = document.getElementById(`ano_${idAssunto}`).innerText.trim();
-    document.getElementById('valor_cadastro').value   = document.getElementById(`valor_${idAssunto}`).value;
-    document.getElementById('id_cadastro').value      = idAssunto;
+    document.getElementById('descricao_cadastro').value = document
+        .getElementById(`descricao_${idAssunto}`).innerText.trim();
+    document.getElementById('id_cadastro').value        = idAssunto;
 
     bootstrap.Modal.getOrCreateInstance('#modal_cadastro').show();
 };
