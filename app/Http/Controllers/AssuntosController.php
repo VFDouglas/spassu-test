@@ -35,6 +35,9 @@ class AssuntosController extends Controller
 
             $assunto            = new Assunto();
             $assunto->descricao = request('descricao');
+            if (app()->runningUnitTests()) {
+                $assunto->id = request('id');
+            }
             $assunto->save();
 
             $retorno['assunto'] = $assunto->toArray();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Assunto;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,33 @@ return new class extends Migration {
             $table->id();
             $table->string('descricao', 20);
         });
+        Assunto::query()
+            ->insert([
+                [
+                    'id'        => 1,
+                    'descricao' => 'Ficcão',
+                ],
+                [
+                    'id'        => 2,
+                    'descricao' => 'Romance',
+                ],
+                [
+                    'id'        => 3,
+                    'descricao' => 'Biografia',
+                ],
+                [
+                    'id'        => 4,
+                    'descricao' => 'Terror',
+                ],
+                [
+                    'id'        => 5,
+                    'descricao' => 'Aventura',
+                ],
+                [
+                    'id'        => 6,
+                    'descricao' => 'Infantil',
+                ],
+            ]);
     }
 
     /**

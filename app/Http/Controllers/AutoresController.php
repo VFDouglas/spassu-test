@@ -35,6 +35,9 @@ class AutoresController extends Controller
 
             $autor       = new Autor();
             $autor->nome = request('nome');
+            if (app()->runningUnitTests()) {
+                $autor->id = request('id');
+            }
             $autor->save();
 
             $retorno['autor'] = $autor->toArray();

@@ -68,6 +68,9 @@ class LivrosController extends Controller
             $livro->edicao  = request('edicao');
             $livro->ano     = request('ano');
             $livro->valor   = request('valor');
+            if (app()->runningUnitTests()) {
+                $livro->id = request('id');
+            }
             $livro->save();
 
             if (request('autor_id')) {
