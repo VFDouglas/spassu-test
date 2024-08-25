@@ -1,6 +1,9 @@
 @extends('header')
 @section('title', 'Cadastro')
 @section('scripts')
+    <script src="{{asset('js/jquery.js')}}"></script>
+    <link href="{{asset('css/bootstrap-select.css')}}" rel="stylesheet">
+    <script src="{{asset('js/bootstrap-select.js')}}" defer></script>
     @vite(['resources/js/livros.js'])
 @endsection
 @section('modal')
@@ -22,17 +25,14 @@
                                     <label for="titulo_cadastro">T&iacute;tulo</label>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" id="autor_cadastro"
-                                        {{count($autores) == 0 ? 'disabled' : ''}}>
-                                        <option value="">&rarr; Escolha &larr;</option>
-                                        @foreach($autores as $autor)
-                                            <option value="{{$autor['id']}}">{{$autor['nome']}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="autor_cadastro">Autor</label>
-                                </div>
+                            <div class="col-12 mb-3">
+                                <select class="form-control custom_select border" id="autor_cadastro" multiple size="2"
+                                    {{count($autores) == 0 ? 'disabled' : ''}} placeholder="Autor">
+                                    <option value="">&rarr; Escolha &larr;</option>
+                                    @foreach($autores as $autor)
+                                        <option value="{{$autor['id']}}">{{$autor['nome']}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating mb-3">
@@ -82,7 +82,6 @@
     </div>
 @endsection
 @section('page_content')
-    {{--@TODO: Implementar a busca das associações de asssuntos e autores--}}
     <div class="container mt-5">
         <div class="row justify-content-end">
             <div class="col-10 col-sm-5 text-end">

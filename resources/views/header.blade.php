@@ -38,6 +38,10 @@
                             <a class="nav-link @if (request()->is('assuntos')) text-white disabled @endif"
                                href="/assuntos">Assuntos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="/relatorio">Relat&oacute;rio</a>
+                        </li>
                     </ul>
                 </div>
             </div>

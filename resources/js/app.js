@@ -3,6 +3,8 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
 
+window.bootstrap = bootstrap;
+
 /**
  * Headers automatically applied to all requests
  * @type {Headers}

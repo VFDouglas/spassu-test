@@ -17,7 +17,8 @@ return new class extends Migration {
         }
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->foreignId('livro_id')->constrained('livros')->cascadeOnDelete();
-            $table->foreignId('assunto_id')->constrained('assuntos')->nullOnDelete();
+            $table->foreignId('assunto_id')->constrained('assuntos')->cascadeOnDelete();
+            $table->unique(['livro_id', 'assunto_id']);
         });
     }
 

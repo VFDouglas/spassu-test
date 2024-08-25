@@ -2,6 +2,8 @@
 
 import * as bootstrap from 'bootstrap';
 
+window.Dropdown = bootstrap.Dropdown;
+
 window.buscaLivros = function(livroId = '') {
     let options = {
         method : 'GET',
@@ -48,6 +50,8 @@ window.buscaLivros = function(livroId = '') {
                                             </div>
                                             <div>
                                                 <input type="hidden" id="valor_${item.id}" value="${item.valor || '0'}">
+                                                <input type="hidden" id="autor_${item.id}" value="${item.autor_id || ''}">
+                                                <input type="hidden" id="assunto_${item.id}" value="${item.assunto_id || ''}">
                                                 <span class="fw-medium text-success">
                                                     ${FORMATA_VALOR.format(item.valor || '0')}
                                                 </span>
@@ -120,7 +124,7 @@ document.getElementById('form_cadastro')?.addEventListener('submit', function(ev
             edicao    : document.getElementById('edicao_cadastro').value,
             ano       : document.getElementById('ano_cadastro').value,
             valor     : document.getElementById('valor_cadastro').value,
-            autor_id  : document.getElementById('autor_cadastro').value,
+            autor_id  : $('#autor_cadastro').val(),
             assunto_id: document.getElementById('assunto_cadastro').value,
         }),
     };
@@ -148,7 +152,15 @@ window.editaLivro = function(idLivro) {
     document.getElementById('edicao_cadastro').value  = document.getElementById(`edicao_${idLivro}`).innerText.trim();
     document.getElementById('ano_cadastro').value     = document.getElementById(`ano_${idLivro}`).innerText.trim();
     document.getElementById('valor_cadastro').value   = document.getElementById(`valor_${idLivro}`).value;
+    document.getElementById('assunto_cadastro').value = document.getElementById(`assunto_${idLivro}`).value || '';
     document.getElementById('id_cadastro').value      = idLivro;
+
+    let opcoes = document.getElementById(`autor_${idLivro}`).value;
+    for (let option of document.getElementById('autor_cadastro').options) {
+        option.selected = !!opcoes.includes(+option.value);
+    }
+    $('.custom_select').selectpicker('destroy').selectpicker();
 
     bootstrap.Modal.getOrCreateInstance('#modal_cadastro').show();
 };
+$('.custom_select').selectpicker('destroy').selectpicker();

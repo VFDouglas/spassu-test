@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Autor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,29 @@ return new class extends Migration {
             $table->id();
             $table->string('nome', 40);
         });
+        Autor::query()
+            ->insert([
+                [
+                    'id'   => 1,
+                    'nome' => 'Douglas Vicentini',
+                ],
+                [
+                    'id'   => 2,
+                    'nome' => 'João Silva',
+                ],
+                [
+                    'id'   => 3,
+                    'nome' => 'Maria Fernandes',
+                ],
+                [
+                    'id'   => 4,
+                    'nome' => 'Carlos Pereira',
+                ],
+                [
+                    'id'   => 5,
+                    'nome' => 'Ana Costa',
+                ],
+            ]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LivrosExport;
 use App\Models\Assunto;
 use App\Models\Autor;
 use App\Models\Livro;
@@ -11,6 +12,8 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class LivrosController extends Controller
 {
@@ -22,12 +25,31 @@ class LivrosController extends Controller
         ]);
     }
 
+    public function exportar(): BinaryFileResponse
+    {
+        return Excel::download(new LivrosExport(), 'livros.xlsx');
+    }
+
     public function buscarLivro(?int $idLivro = null): array
     {
-        $livros = Livro::query();
+        $livros = Livro::query()
+            ->select([
+                'l.id',
+                'l.titulo',
+                'l.editora',
+                'l.edicao',
+                'l.ano',
+                'l.valor',
+                'las.assunto_id',
+            ])
+            ->selectRaw("GROUP_CONCAT(lat.autor_id ORDER BY lat.autor_id SEPARATOR ',') AS autor_id")
+            ->from('livros as l')
+            ->leftJoin('livro_autor as lat', 'l.id', '=', 'lat.livro_id')
+            ->leftJoin('livro_assunto as las', 'l.id', '=', 'las.livro_id');
         if ($idLivro) {
             $livros->where('id', '=', $idLivro);
         }
+        $livros->groupBy(['l.id', 'l.titulo', 'l.editora', 'l.edicao', 'l.ano', 'l.valor', 'las.assunto_id']);
         return $livros->get()->toArray();
     }
 
@@ -49,14 +71,16 @@ class LivrosController extends Controller
             $livro->save();
 
             if (request('autor_id')) {
-                $livroAutor = LivroAutor::query()
-                    ->create([
-                        'livro_id' => $livro->id,
-                        'autor_id' => (int)request('autor_id'),
-                    ]);
+                foreach (request('autor_id') as $autor_id) {
+                    LivroAutor::query()
+                        ->create([
+                            'livro_id' => $livro->id,
+                            'autor_id' => (int)$autor_id,
+                        ]);
+                }
             }
             if (request('assunto_id')) {
-                $livroAutor = LivroAssunto::query()
+                LivroAssunto::query()
                     ->create([
                         'livro_id'   => $livro->id,
                         'assunto_id' => (int)request('assunto_id'),
@@ -85,16 +109,23 @@ class LivrosController extends Controller
             $livro->valor   = request('valor');
             $livro->save();
 
+            LivroAutor::query()->where('livro_id', '=', $livro->id)->delete();
             if (request('autor_id')) {
-                LivroAutor::query()
-                    ->updateOrInsert([
-                        'livro_id' => $livro->id,
-                        'autor_id' => (int)request('autor_id'),
-                    ], [
-                        'livro_id' => $livro->id,
-                    ]);
+                foreach (request('autor_id') as $autor_id) {
+                    if (!$autor_id) {
+                        continue;
+                    }
+                    LivroAutor::query()
+                        ->updateOrInsert([
+                            'livro_id' => $livro->id,
+                            'autor_id' => (int)$autor_id,
+                        ], [
+                            'livro_id' => $livro->id,
+                        ]);
+                }
             }
-            if (request('assunto_id')) {
+            LivroAssunto::query()->where('livro_id', '=', $livro->id)->delete();
+            if (!empty(request('assunto_id'))) {
                 LivroAssunto::query()
                     ->updateOrInsert([
                         'livro_id'   => $livro->id,

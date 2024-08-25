@@ -28,7 +28,7 @@ window.buscaAutores = function(autorId = '') {
                                     <div class="card mb-1">
                                         <div class="card-header fw-bold text-primary-emphasis text-truncate py-3"
                                              data-bs-toggle="tooltip" title="${item.nome}" id="nome_${item.id}">
-                                             <i class="fa-solid fa-inbox"></i>
+                                             <i class="fa-solid fa-user"></i>
                                             ${item.nome}
                                         </div>
                                     </div>
