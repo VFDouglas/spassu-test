@@ -13,19 +13,24 @@
 - Bootstrap CSS;
 
 ### Requisitos:
+
 - Docker
+- WSL
 
 ### Como Usar:
+
 - Clone o projeto no GitHub:
+
 ```
 git clone https://github.com/VFDouglas/spassu-test.git
 ```
 
 Execute os comandos a seguir:
+
 ```
 cd spassu-test
 cp .env.example .env
-docker-compose build --no-cache
+docker compose build --no-cache --build-arg uid=$(id -u $(whoami))
 docker-compose up -d
 
 # Entre no contêiner para executar os próximos comandos
