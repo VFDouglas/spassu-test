@@ -11,6 +11,7 @@
 - Redis;
 - NGINX;
 - Bootstrap CSS;
+- Relatório exportado para planilha utilizando o pacote "maatwebsite/excel".
 
 ### Requisitos:
 
