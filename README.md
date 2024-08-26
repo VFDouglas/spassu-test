@@ -30,6 +30,8 @@ docker-compose up -d
 
 # Entre no contêiner para executar os próximos comandos
 docker compose exec php bash
+composer install
+npm install
 php artisan key:generate
 php artisan migrate
 npm run dev
