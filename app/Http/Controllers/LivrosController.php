@@ -20,8 +20,8 @@ class LivrosController extends Controller
     public function index(): Factory|View|\Illuminate\Foundation\Application|Application
     {
         return view('livros', [
-            'assuntos' => Assunto::query()->get()->toArray(),
-            'autores'  => Autor::query()->get()->toArray(),
+            'assuntos' => Assunto::buscaAssuntos(),
+            'autores'  => Autor::buscaAutores(),
         ]);
     }
 
@@ -32,25 +32,7 @@ class LivrosController extends Controller
 
     public function buscarLivro(?int $idLivro = null): array
     {
-        $livros = Livro::query()
-            ->select([
-                'l.id',
-                'l.titulo',
-                'l.editora',
-                'l.edicao',
-                'l.ano',
-                'l.valor',
-                'las.assunto_id',
-            ])
-            ->selectRaw("GROUP_CONCAT(lat.autor_id ORDER BY lat.autor_id SEPARATOR ',') AS autor_id")
-            ->from('livros as l')
-            ->leftJoin('livro_autor as lat', 'l.id', '=', 'lat.livro_id')
-            ->leftJoin('livro_assunto as las', 'l.id', '=', 'las.livro_id');
-        if ($idLivro) {
-            $livros->where('id', '=', $idLivro);
-        }
-        $livros->groupBy(['l.id', 'l.titulo', 'l.editora', 'l.edicao', 'l.ano', 'l.valor', 'las.assunto_id']);
-        return $livros->get()->toArray();
+        return Livro::buscarLivros($idLivro);
     }
 
     public function criarLivro(): array
@@ -91,6 +73,7 @@ class LivrosController extends Controller
             }
 
             $retorno['livro'] = $livro->toArray();
+            Livro::limparCache($livro->id);
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }
@@ -139,6 +122,7 @@ class LivrosController extends Controller
             }
 
             $retorno['livro'] = $livro->toArray();
+            Livro::limparCache($livro->id);
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }
@@ -155,6 +139,7 @@ class LivrosController extends Controller
             }
             $livro->delete();
             $retorno['livro'] = $livro->toArray();
+            Livro::limparCache($id);
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }

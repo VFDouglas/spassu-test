@@ -17,11 +17,7 @@ class AssuntosController extends Controller
 
     public function buscarAssunto(?int $idAssunto = null): array
     {
-        $assuntos = Assunto::query();
-        if ($idAssunto) {
-            $assuntos->where('id', '=', $idAssunto);
-        }
-        return $assuntos->get()->toArray();
+        return Assunto::buscaAssuntos($idAssunto);
     }
 
     public function criarAssunto(): array
@@ -41,6 +37,7 @@ class AssuntosController extends Controller
             $assunto->save();
 
             $retorno['assunto'] = $assunto->toArray();
+            Assunto::limparCache();
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }
@@ -59,6 +56,7 @@ class AssuntosController extends Controller
             $assunto->save();
 
             $retorno['assunto'] = $assunto->toArray();
+            Assunto::limparCache();
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }
@@ -75,6 +73,7 @@ class AssuntosController extends Controller
             }
             $assunto->delete();
             $retorno['assunto'] = $assunto->toArray();
+            Assunto::limparCache();
         } catch (Exception $e) {
             $retorno['erro'] = $e->getMessage();
         }

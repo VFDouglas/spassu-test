@@ -269,3 +269,93 @@
 2024/08/25 18:28:31 [notice] 1#1: start worker process 38
 2024/08/25 18:28:31 [notice] 1#1: start worker process 39
 2024/08/25 18:28:31 [notice] 1#1: start worker process 40
+2024/08/26 11:20:20 [notice] 1#1: using the "epoll" event method
+2024/08/26 11:20:20 [notice] 1#1: nginx/1.27.1
+2024/08/26 11:20:20 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2024/08/26 11:20:20 [notice] 1#1: OS: Linux 5.15.153.1-microsoft-standard-WSL2
+2024/08/26 11:20:20 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/08/26 11:20:20 [notice] 1#1: start worker processes
+2024/08/26 11:20:20 [notice] 1#1: start worker process 35
+2024/08/26 11:20:20 [notice] 1#1: start worker process 36
+2024/08/26 11:20:20 [notice] 1#1: start worker process 37
+2024/08/26 11:35:15 [error] 35#35: *10 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.2:9000", host: "localhost:8080"
+2024/08/26 11:45:24 [error] 35#35: *12 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.21.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.2:9000", host: "localhost:8080"
+2024/08/26 11:45:54 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/08/26 11:45:54 [notice] 35#35: gracefully shutting down
+2024/08/26 11:45:54 [notice] 37#37: gracefully shutting down
+2024/08/26 11:45:54 [notice] 37#37: exiting
+2024/08/26 11:45:54 [notice] 36#36: gracefully shutting down
+2024/08/26 11:45:54 [notice] 36#36: exiting
+2024/08/26 11:45:54 [notice] 36#36: exit
+2024/08/26 11:45:54 [notice] 37#37: exit
+2024/08/26 11:45:54 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2024/08/26 11:45:54 [notice] 1#1: worker process 37 exited with code 0
+2024/08/26 11:45:54 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 11:45:54 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2024/08/26 11:45:54 [notice] 1#1: worker process 36 exited with code 0
+2024/08/26 11:45:54 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 11:46:05 [notice] 1#1: using the "epoll" event method
+2024/08/26 11:46:05 [notice] 1#1: nginx/1.27.1
+2024/08/26 11:46:05 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2024/08/26 11:46:05 [notice] 1#1: OS: Linux 5.15.153.1-microsoft-standard-WSL2
+2024/08/26 11:46:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/08/26 11:46:05 [notice] 1#1: start worker processes
+2024/08/26 11:46:05 [notice] 1#1: start worker process 35
+2024/08/26 11:46:05 [notice] 1#1: start worker process 36
+2024/08/26 11:46:05 [notice] 1#1: start worker process 37
+2024/08/26 11:46:27 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/08/26 11:46:27 [notice] 36#36: gracefully shutting down
+2024/08/26 11:46:27 [notice] 35#35: gracefully shutting down
+2024/08/26 11:46:27 [notice] 36#36: exiting
+2024/08/26 11:46:27 [notice] 35#35: exiting
+2024/08/26 11:46:27 [notice] 35#35: exit
+2024/08/26 11:46:27 [notice] 36#36: exit
+2024/08/26 11:46:27 [notice] 37#37: gracefully shutting down
+2024/08/26 11:46:27 [notice] 37#37: exiting
+2024/08/26 11:46:27 [notice] 37#37: exit
+2024/08/26 11:46:27 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2024/08/26 11:46:27 [notice] 1#1: worker process 35 exited with code 0
+2024/08/26 11:46:27 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 11:46:27 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2024/08/26 11:46:27 [notice] 1#1: worker process 37 exited with code 0
+2024/08/26 11:46:27 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 11:46:27 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2024/08/26 11:46:27 [notice] 1#1: worker process 36 exited with code 0
+2024/08/26 11:46:27 [notice] 1#1: exit
+2024/08/26 11:46:29 [notice] 1#1: using the "epoll" event method
+2024/08/26 11:46:29 [notice] 1#1: nginx/1.27.1
+2024/08/26 11:46:29 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2024/08/26 11:46:29 [notice] 1#1: OS: Linux 5.15.153.1-microsoft-standard-WSL2
+2024/08/26 11:46:29 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/08/26 11:46:29 [notice] 1#1: start worker processes
+2024/08/26 11:46:29 [notice] 1#1: start worker process 35
+2024/08/26 11:46:29 [notice] 1#1: start worker process 36
+2024/08/26 11:46:29 [notice] 1#1: start worker process 37
+2024/08/26 12:07:48 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/08/26 12:07:48 [notice] 37#37: gracefully shutting down
+2024/08/26 12:07:48 [notice] 35#35: gracefully shutting down
+2024/08/26 12:07:48 [notice] 37#37: exiting
+2024/08/26 12:07:48 [notice] 35#35: exiting
+2024/08/26 12:07:48 [notice] 37#37: exit
+2024/08/26 12:07:48 [notice] 35#35: exit
+2024/08/26 12:07:48 [notice] 36#36: gracefully shutting down
+2024/08/26 12:07:48 [notice] 36#36: exiting
+2024/08/26 12:07:48 [notice] 36#36: exit
+2024/08/26 12:07:48 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2024/08/26 12:07:48 [notice] 1#1: worker process 35 exited with code 0
+2024/08/26 12:07:48 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 12:07:48 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2024/08/26 12:07:48 [notice] 1#1: worker process 37 exited with code 0
+2024/08/26 12:07:48 [notice] 1#1: signal 29 (SIGIO) received
+2024/08/26 12:07:48 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2024/08/26 12:07:48 [notice] 1#1: worker process 36 exited with code 0
+2024/08/26 12:07:48 [notice] 1#1: exit
+2024/08/26 12:11:26 [notice] 1#1: using the "epoll" event method
+2024/08/26 12:11:26 [notice] 1#1: nginx/1.27.1
+2024/08/26 12:11:26 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2024/08/26 12:11:26 [notice] 1#1: OS: Linux 5.15.153.1-microsoft-standard-WSL2
+2024/08/26 12:11:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/08/26 12:11:26 [notice] 1#1: start worker processes
+2024/08/26 12:11:26 [notice] 1#1: start worker process 36
+2024/08/26 12:11:26 [notice] 1#1: start worker process 37
+2024/08/26 12:11:26 [notice] 1#1: start worker process 38

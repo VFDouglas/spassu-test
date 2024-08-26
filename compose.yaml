@@ -26,7 +26,7 @@ services:
       - ./:/var/www/html/
       - ./logs/php.log:/var/log/fpm-php.www.log
     ports:
-      - '5173:5173' # Vite port
+      - "${VITE_PORT}:${VITE_PORT}"
     container_name: ${APP_NAME}_php_${APP_ENV}
   mysql:
     networks:
@@ -39,8 +39,9 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_DATABASE:-laravel}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_HOST: '%'
     container_name: ${APP_NAME}_mysql_${APP_ENV}
   redis:
     image: redis:latest
