@@ -41,4 +41,8 @@ npm install
 php artisan key:generate
 php artisan migrate
 npm run dev
+
+# Execute os testes com o comando abaixo
+php artisan test
 ```
+
